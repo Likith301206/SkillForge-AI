@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/profile.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="profile-container">
+
+<form method="POST"
+      enctype="multipart/form-data"
+      class="profile-card">
+        <h1>
+            <i class="fa-solid fa-user-pen"></i>
+            Edit Profile
+        </h1>
+
+        <label>Full Name</label>
+        <input type="text" name="full_name"
+               value="{{ profile[1] if profile else '' }}" required>
+
+        <label>Phone</label>
+        <input type="text" name="phone"
+               value="{{ profile[3] if profile else '' }}">
+
+        <label>College</label>
+        <input type="text" name="college"
+               value="{{ profile[4] if profile else '' }}">
+
+        <label>Department</label>
+        <input type="text" name="department"
+               value="{{ profile[5] if profile else '' }}">
+
+        <label>Semester</label>
+        <input type="text" name="semester"
+               value="{{ profile[6] if profile else '' }}">
+
+        <label>Location</label>
+        <input type="text" name="location"
+               value="{{ profile[7] if profile else '' }}">
+
+        <label>GitHub</label>
+        <input type="url" name="github"
+               value="{{ profile[8] if profile else '' }}">
+
+        <label>LinkedIn</label>
+        <input type="url" name="linkedin"
+               value="{{ profile[9] if profile else '' }}">
+
+        <label>Portfolio</label>
+        <input type="url" name="portfolio"
+               value="{{ profile[10] if profile else '' }}">
+
+        <label>Bio</label>
+        <textarea name="bio" rows="5">{{ profile[11] if profile else '' }}</textarea>
+
+        <button type="submit">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Save Profile
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fa;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    background:#1f2937;
+}
+
+nav h2{
+    color:white;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+.hero{
+    /* your existing styles */
+
+    margin-bottom:150px;
+}
+
+.hero{
+    text-align:center;
+    margin-top:120px;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.hero p{
+    margin:20px 0;
+    font-size:20px;
+}
+
+.hero button{
+    padding:12px 25px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+/* ==========================
+   Register Page
+========================== */
+
+.register-container{
+    width:400px;
+    margin:80px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.register-container h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.register-container form{
+    display:flex;
+    flex-direction:column;
+}
+
+.register-container input{
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:16px;
+}
+
+.register-container button{
+    padding:12px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.register-container button:hover{
+    background:#1d4ed8;
+}
+html{
+    scroll-behavior:smooth;
+}
+/* ABOUT SECTION */
+
+.about{
+    padding:180px 10% 100px;
+    background:#fff;
+    text-align:center;
+}
+
+.about h2{
+
+    font-size:42px;
+
+    color:#2563eb;
+
+    margin-bottom:20px;
+
+}
+
+.about p{
+
+    font-size:20px;
+
+    color:#555;
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+
+    margin-top:60px;
+
+}
+
+.card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card h3{
+
+    font-size:24px;
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    font-size:16px;
+
+    color:#666;
+
+}
+.get-started-btn{
+    display:inline-block;
+    margin-top:30px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:15px 35px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.get-started-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+}
+html{
+    scroll-behavior: smooth;
+}

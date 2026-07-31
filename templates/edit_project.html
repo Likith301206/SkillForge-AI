@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Project</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/project.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <form method="POST" class="project-card">
+
+        <h1>
+            <i class="fa-solid fa-pen-to-square"></i>
+            Edit Project
+        </h1>
+
+        <label>Project Name</label>
+
+        <input
+            type="text"
+            name="project_name"
+            value="{{ project[1] }}"
+            required>
+
+        <label>Tech Stack</label>
+
+        <input
+            type="text"
+            name="tech_stack"
+            value="{{ project[2] }}"
+            required>
+
+        <label>Description</label>
+
+        <textarea
+            name="description"
+            rows="5"
+            required>{{ project[3] }}</textarea>
+
+        <label>GitHub Link</label>
+
+        <input
+            type="url"
+            name="github_link"
+            value="{{ project[4] }}">
+
+        <label>Live Demo Link</label>
+
+        <input
+            type="url"
+            name="live_link"
+            value="{{ project[5] }}">
+
+        <label>Status</label>
+
+        <select name="status">
+
+            <option {% if project[6]=="Planning" %}selected{% endif %}>
+                Planning
+            </option>
+
+            <option {% if project[6]=="In Progress" %}selected{% endif %}>
+                In Progress
+            </option>
+
+            <option {% if project[6]=="Completed" %}selected{% endif %}>
+                Completed
+            </option>
+
+        </select>
+
+        <label>Progress (%)</label>
+
+        <input
+            type="number"
+            name="progress"
+            min="0"
+            max="100"
+            value="{{ project[7] }}">
+
+        <button>
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Update Project
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

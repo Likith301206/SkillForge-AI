@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/resume_analyzer.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="hero">
+
+            <h1>🤖 AI Resume Analyzer</h1>
+
+            <p>
+                Upload your resume and receive an AI-powered analysis.
+            </p>
+
+            <form action="{{ url_for('resume_analyzer') }}"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <input
+                    type="file"
+                    name="resume"
+                    accept=".pdf"
+                    required>
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="resume">
+                    Analyze Resume
+                </button>
+
+            </form>
+
+        </div>
+
+        {% if extracted_text %}
+
+        <div class="status">
+            ✅ Resume Uploaded Successfully
+        </div>
+
+        <section class="stats">
+
+            <div class="stat">
+
+                <h3>Resume Score</h3>
+
+     <div class="score score-color" data-score="{{ resume_score }}">
+    {{ resume_score }}%
+</div>
+                <div class="progress">
+                    <div class="fill"
+                         style="width: {{ resume_score }}%;">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <h3>ATS Score</h3>
+
+  <div class="score score-color" data-score="{{ ats_score }}">
+    {{ ats_score }}%
+</div>
+
+                <div class="progress">
+                    <div class="fill"
+                         style="width: {{ ats_score }}%;">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <h3>Overall Rating</h3>
+
+                {% if resume_score >= 80 %}
+                    <div class="rating excellent">
+                        ⭐ Excellent
+                    </div>
+
+                {% elif resume_score >= 60 %}
+                    <div class="rating good">
+                        👍 Good
+                    </div>
+
+                {% else %}
+                    <div class="rating poor">
+                        ⚠ Needs Improvement
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+        <section class="grid">
+
+            <div class="panel">
+
+                <h2>💪 Strengths</h2>
+
+                <div class="chips">
+
+                    {% for item in strengths %}
+                        <span class="chip">
+                            {{ item }}
+                        </span>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <h2>💡 Suggestions</h2>
+
+                <ul>
+
+                    {% for item in suggestions %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <section class="skill-gap">
+
+            <h2>🎯 Find Your Skill Gap</h2>
+
+            <p>
+                Enter your dream job role and discover the skills you need to learn.
+            </p>
+
+            <form action="{{ url_for('resume_analyzer') }}"
+                  method="POST">
+
+               <select name="job_role" required>
+    <option value="">Select Career</option>
+
+    <option>Python Developer</option>
+    <option>Java Developer</option>
+    <option>C++ Developer</option>
+    <option>C#/.NET Developer</option>
+    <option>JavaScript Developer</option>
+    <option>Frontend Developer</option>
+    <option>Backend Developer</option>
+    <option>Full Stack Developer</option>
+    <option>MERN Stack Developer</option>
+    <option>MEAN Stack Developer</option>
+</select>
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="skill_gap">
+                    Analyze Skill Gap
+                </button>
+
+            </form>
+
+        </section>
+
+        {% if skill_match is not none %}
+
+<section class="skill-result">
+
+    <div class="skill-score-card">
+
+        <h2>🎯 Skill Gap Analysis</h2>
+
+    <div class="big-score score-color" data-score="{{ skill_match }}">
+    {{ skill_match }}%
+</div>
+
+        <p>Skill Match Score</p>
+
+        <div class="progress-bar">
+            <div class="progress-fill"
+                 style="width: {{ skill_match }}%;">
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="skill-grid">
+
+        <div class="skill-box">
+
+            <h3>✅ Existing Skills</h3>
+
+            <div class="pill-container">
+
+                {% for skill in existing_skills %}
+
+                <span class="pill success">
+                    {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-box">
+
+            <h3>❌ Missing Skills</h3>
+
+            <div class="pill-container">
+
+                {% for skill in missing_skills %}
+
+                <span class="pill danger">
+                    {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="roadmap-card">
+
+        <h3>🗺 Learning Roadmap</h3>
+
+        <div class="timeline">
+
+            {% for step in roadmap %}
+
+            <div class="timeline-item">
+
+                <div class="number">
+                    {{ loop.index }}
+                </div>
+
+                <div class="timeline-text">
+                    {{ step }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+<div class="projects-card">
+
+    <h3>🚀 Recommended Projects</h3>
+
+    <div class="project-grid">
+
+        {% for project in projects %}
+
+        <div class="project-item">
+
+            <span class="rocket">
+                🚀
+            </span>
+
+            <span>
+                {{ project }}
+            </span>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div> <!-- projects-card -->
+
+
+<div class="projects-card">
+
+    <h3>📜 Recommended Certifications</h3>
+
+    <div class="project-grid">
+
+        {% for cert in certifications %}
+
+        <div class="project-item">
+            <span class="rocket">📜</span>
+            <span>{{ cert }}</span>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="projects-card">
+
+    <h3>🛠 Recommended Tools</h3>
+
+    <div class="project-grid">
+
+        {% for tool in tools %}
+
+        <div class="project-item">
+            <span class="rocket">🛠</span>
+            <span>{{ tool }}</span>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="projects-card">
+
+    <h3>🎯 Interview Topics</h3>
+
+    <div class="project-grid">
+
+        {% for topic in interview_topics %}
+
+        <div class="project-item">
+            <span class="rocket">🎯</span>
+            <span>{{ topic }}</span>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+
+</section> <!-- skill-result -->
+
+{% endif %}
+
+{% endif %}
+
+</div> <!-- card -->
+
+</div> <!-- container -->
+<!-- Loading Overlay -->
+
+<div id="loading-screen">
+
+    <div class="loader"></div>
+
+    <h2>🤖 AI is analyzing your resume...</h2>
+
+    <p>Please wait a few seconds.</p>
+
+</div>
+<script>
+
+const forms = document.querySelectorAll("form");
+
+forms.forEach(form =>{
+
+    form.addEventListener("submit", () =>{
+
+        document.getElementById("loading-screen").style.display = "flex";
+
+    });
+
+});
+const scoreElements = document.querySelectorAll(".score-color");
+
+scoreElements.forEach(score => {
+
+    const value = Number(score.dataset.score);
+
+    if(score.classList.contains("big-score")){
+        score.style.color="#ffffff";
+    }else if(value>=80){
+        score.style.color="#22c55e";
+    }else if(value>=60){
+        score.style.color="#f59e0b";
+    }else{
+        score.style.color="#ef4444";
+    }
+
+});
+</script>
+
+</body>
+</html>

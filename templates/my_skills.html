@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Skills | SkillForge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/my_skills.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+
+       <div class="top-bar">
+
+    <h1>My Skills</h1>
+
+    <div class="actions">
+
+        <a href="/dashboard" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Dashboard
+        </a>
+
+        <a href="/add_skill" class="add-btn">
+            <i class="fa-solid fa-plus"></i>
+            Add Skill
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="skills-grid">
+
+{% for skill in skills %}
+
+<div class="skill-card">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>{{ skill[1] }}</h2>
+
+            <span>{{ skill[2] }}</span>
+
+        </div>
+
+        <h3>{{ skill[4] }}%</h3>
+
+    </div>
+
+
+    <p class="level">
+
+        {{ skill[3] }}
+
+    </p>
+
+
+    <div class="progress">
+
+        <div class="progress-fill"
+             style="width: {{ skill[4] }}%;">
+
+        </div>
+
+    </div>
+
+
+    <div class="card-buttons">
+
+        <a href="/edit_skill/{{ skill[0] }}"
+           class="edit-btn">
+
+            <i class="fa-solid fa-pen"></i>
+
+            Edit
+
+        </a>
+
+
+        <a href="/delete_skill/{{ skill[0] }}"
+           class="delete-btn"
+           onclick="return confirm('Delete this skill?')">
+
+            <i class="fa-solid fa-trash"></i>
+
+            Delete
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>

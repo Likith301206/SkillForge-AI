@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Builder</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/resume.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="resume-container">
+
+    <div class="resume-card">
+
+        <div class="header">
+
+            <h1>{{ profile[1] }}</h1>
+
+            <p>{{ profile[2] }}</p>
+
+            <p>
+                {{ profile[3] }} |
+                {{ profile[7] }}
+            </p>
+
+        </div>
+
+        <hr>
+
+        <section>
+
+            <h2>Education</h2>
+
+            <p><strong>College:</strong> {{ profile[4] }}</p>
+
+            <p><strong>Department:</strong> {{ profile[5] }}</p>
+
+            <p><strong>Semester:</strong> {{ profile[6] }}</p>
+
+        </section>
+
+        <hr>
+
+        <section>
+
+            <h2>Skills</h2>
+
+            <ul>
+
+                {% for skill in skills %}
+
+                <li>
+
+                    {{ skill[1] }}
+
+                    ({{ skill[2] }}) -
+
+                    {{ skill[4] }}%
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </section>
+
+        <hr>
+
+        <section>
+
+            <h2>Projects</h2>
+
+            {% for project in projects %}
+
+            <div class="project">
+
+                <h3>{{ project[1] }}</h3>
+
+                <p>{{ project[3] }}</p>
+
+                <p><strong>Tech Stack:</strong> {{ project[2] }}</p>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+        <hr>
+
+        <section>
+
+            <h2>About Me</h2>
+
+            <p>{{ profile[11] }}</p>
+
+        </section>
+        <div class="download-section">
+
+    <a href="{{ url_for('resume_preview') }}" class="download-btn">
+        <i class="fa-solid fa-eye"></i>
+        Resume Preview
+    </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

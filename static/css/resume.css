@@ -1,0 +1,147 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    padding:40px;
+}
+
+.resume-container{
+    display:flex;
+    justify-content:center;
+}
+
+.resume-card{
+
+    width:900px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+
+}
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+.header h1{
+
+    color:#3B82F6;
+
+    margin-bottom:10px;
+
+}
+
+section{
+
+    margin-top:25px;
+
+}
+
+section h2{
+
+    color:#60a5fa;
+
+    margin-bottom:15px;
+
+}
+
+ul{
+
+    padding-left:20px;
+
+}
+
+.project{
+
+    margin-bottom:20px;
+
+}
+
+hr{
+
+    margin-top:20px;
+
+    border:.5px solid #334155;
+
+}
+.download-section{
+    margin-top:40px;
+    text-align:center;
+}
+
+.download-btn{
+    background:#3B82F6;
+    color:white;
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.download-btn:hover{
+    background:#2563eb;
+}
+.certificate-list{
+
+    margin-left:20px;
+
+}
+
+.certificate-list li{
+
+    margin-bottom:10px;
+
+    color:#444;
+
+}
+.download-btn{
+    position:fixed;
+    right:30px;
+    bottom:30px;
+    z-index:9999;
+}
+
+.download-btn button{
+
+    background:#2563eb;
+    color:white;
+
+    border:none;
+
+    padding:15px 28px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+    transition:.3s;
+}
+
+.download-btn button:hover{
+
+    transform:translateY(-3px);
+
+}

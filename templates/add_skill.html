@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Skill | SkillForge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/add_skill.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="header">
+            <i class="fa-solid fa-plus"></i>
+            <h1>Add New Skill</h1>
+        </div>
+
+        <form action="/save_skill" method="POST">
+
+            <div class="input-group">
+
+                <label>Skill Name</label>
+
+                <input
+                    type="text"
+                    name="skill_name"
+                    placeholder="Python"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Category</label>
+
+                <select name="category">
+
+                    <option>Programming</option>
+                    <option>Frontend</option>
+                    <option>Backend</option>
+                    <option>Database</option>
+                    <option>AI / ML</option>
+                    <option>Cloud</option>
+                    <option>DevOps</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Level</label>
+
+                <select name="level">
+
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Progress (%)</label>
+
+                <input
+                    type="number"
+                    name="progress"
+                    min="0"
+                    max="100"
+                    value="0">
+
+            </div>
+
+            <button type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Skill
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

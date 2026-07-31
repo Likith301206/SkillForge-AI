@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Preview</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/resume_preview.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="resume">
+
+    <!-- LEFT PANEL -->
+
+    <div class="left">
+
+        <div class="profile">
+
+            <div class="avatar">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <h1>{{ profile[1] }}</h1>
+
+            <p>Python Full Stack Developer</p>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Contact</h2>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+
+                {{ profile[3] }}
+            </p>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+
+                {{ profile[7] }}
+            </p>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+
+                {{ profile[2] }}
+            </p>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Links</h2>
+
+          <div class="social-links">
+
+    <a href="{{ profile[8] }}" target="_blank">
+        <i class="fa-brands fa-github"></i> GitHub
+    </a>
+
+    <a href="{{ profile[9] }}" target="_blank">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn
+    </a>
+
+    <a href="{{ profile[10] }}" target="_blank">
+        <i class="fa-solid fa-globe"></i> Portfolio
+    </a>
+</div>
+</div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+
+    <div class="right">
+
+        <div class="title">
+
+            <h1>{{ profile[1] }}</h1>
+
+            <h3>Software Developer</h3>
+
+        </div>
+
+        <!-- EDUCATION -->
+
+<div class="section">
+
+    <h2>Education</h2>
+
+    <div class="edu-card">
+
+        <h3>{{ profile[4] }}</h3>
+
+        <p>{{ profile[5] }}</p>
+
+        <span>{{ profile[6] }}</span>
+
+    </div>
+
+</div>
+
+<!-- SKILLS -->
+
+<div class="section">
+
+    <h2>Technical Skills</h2>
+
+    <div class="skill-container">
+
+        {% for skill in skills %}
+
+        <span class="skill-badge">
+
+            {{ skill[1] }}
+
+        </span>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- PROJECTS -->
+
+<div class="section">
+
+    <h2>Projects</h2>
+
+    {% for project in projects %}
+
+    <div class="project-card">
+
+        <h3>{{ project[1] }}</h3>
+
+        <p>{{ project[3] }}</p>
+
+        <small>
+
+            {{ project[2] }}
+
+        </small>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+<!-- EXPERIENCE -->
+
+<div class="section">
+
+    <h2>Experience</h2>
+
+    <div class="project-card">
+
+        <h3>Python Full Stack Developer (Learning)</h3>
+
+        <small>2025 - Present</small>
+
+        <p>
+            Learning Python, Flask, SQLite, HTML, CSS and building real-world projects
+            including SkillForge AI.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="section">
+
+    <h2>Languages</h2>
+
+    <p>English</p>
+
+    <p>Kannada</p>
+
+    <p> Hindi</p>
+
+</div>
+<div class="resume-section">
+    <h2>🏆 Certifications</h2>
+
+    {% if certificates %}
+        {% for certificate in certificates %}
+            <div class="certificate-card">
+                <h4>{{ certificate[1] }}</h4>
+                <p><strong>Issuer:</strong> {{ certificate[2] }}</p>
+                <p><strong>Date:</strong> {{ certificate[3] }}</p>
+
+                {% if certificate[4] %}
+                    <a href="{{ certificate[4] }}" target="_blank">
+                        View Credential
+                    </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No certificates added yet.</p>
+    {% endif %}
+</div>
+
+    </div>
+
+</div>
+
+<!-- Download Button -->
+<div class="download-btn">
+    <button onclick="downloadResume()">
+        <i class="fa-solid fa-download"></i>
+        Download Resume
+    </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+function downloadResume() {
+
+    const element = document.querySelector(".resume");
+
+    const opt = {
+        margin: 0,
+
+        filename: "SkillForge_Resume.pdf",
+
+        image: {
+            type: "jpeg",
+            quality: 1
+        },
+
+        html2canvas: {
+            scale: 2,
+            useCORS: true,
+            scrollY: 0
+        },
+
+        jsPDF: {
+            unit: "mm",
+            format: "a4",
+            orientation: "portrait"
+        },
+
+        pagebreak: {
+            mode: ["avoid-all"]
+        }
+    };
+
+    html2pdf().set(opt).from(element).save();
+}
+</script>
+
+</body>
+</html>

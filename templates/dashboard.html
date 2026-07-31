@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillForge AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-bolt"></i>
+            <h2>SkillForge AI</h2>
+        </div>
+
+       <ul>
+
+    <a href="{{ url_for('dashboard') }}" class="nav-link">
+        <li class="active">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </li>
+    </a>
+
+    <a href="{{ url_for('my_skills') }}" class="nav-link">
+        <li>
+            <i class="fa-solid fa-book"></i>
+            <span>My Skills</span>
+        </li>
+    </a>
+
+    <a href="{{ url_for('add_skill') }}" class="nav-link">
+        <li>
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Skill</span>
+        </li>
+    </a>
+
+    <a href="{{ url_for('my_projects') }}" class="nav-link">
+        <li>
+            <i class="fa-solid fa-folder"></i>
+            <span>My Projects</span>
+        </li>
+    </a>
+
+    <a href="{{ url_for('my_certificates') }}" class="nav-link">
+    <li>
+        <i class="fa-solid fa-certificate"></i>
+        <span>Certificates</span>
+    </li>
+</a>
+
+
+   <a href="{{ url_for('resume') }}" class="nav-link">
+    <li>
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Resume Builder</span>
+    </li>
+</a>
+
+</ul>
+<a href="{{ url_for('edit_profile') }}" class="nav-link">
+    <li>
+        <i class="fa-solid fa-user-pen"></i>
+        <span>Profile</span>
+    </li>
+</a>
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header class="navbar">
+
+            <h1>Welcome, {{ user }} </h1>
+
+            <div class="right">
+
+               <a href="{{ url_for('edit_profile') }}" class="profile">
+    {{ user[0]|upper }}
+</a>
+
+            </div>
+
+        </header>
+
+        <div class="content">
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <span class="hero-tag">
+                🚀 Keep Learning
+            </span>
+
+            <h2>Welcome back, {{ user }}</h2>
+
+            <p>
+                Every project you complete brings you one step closer to your
+                dream software job. Stay consistent, keep learning,
+                and build something amazing today.
+            </p>
+
+   <a href="{{ url_for('add_skill') }}" class="hero-btn">
+    Continue Learning →
+</a>
+
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-code"></i>
+            </div>
+
+            <div class="stat-info">
+                <h3>Skills</h3>
+            <h2>{{ total_skills }}</h2>             
+            <p>Skills Learned</p>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-diagram-project"></i>
+            </div>
+
+            <div class="stat-info">
+                <h3>Projects</h3>
+            <h2>{{ total_projects }}</h2>       
+            <p>Completed Projects</p>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-file-lines"></i>
+            </div>
+
+            <div class="stat-info">
+                <h3>Resume</h3>
+              <h2>{{ avg_skill }}%</h2>
+                    <p>Resume Score</p>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-fire"></i>
+            </div>
+
+            <div class="stat-info">
+                <h3>Streak</h3>
+                <h2>15</h2>
+                <p>Learning Days</p>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="progress-section">
+
+    <!-- Quick Actions -->
+
+    <div class="quick-card">
+
+    <h2>
+        <i class="fa-solid fa-bolt"></i>
+        Quick Actions
+    </h2>
+
+    <!-- Add Skill -->
+    <a href="{{ url_for('add_skill') }}" class="action-btn">
+        <i class="fa-solid fa-plus"></i>
+        <span>Add Skill</span>
+    </a>
+
+    <!-- Add Project -->
+    <a href="{{ url_for('add_project') }}" class="action-btn">
+        <i class="fa-solid fa-diagram-project"></i>
+        <span>Add Project</span>
+    </a>
+
+    <!-- My Skills -->
+    <a href="{{ url_for('my_skills') }}" class="action-btn">
+        <i class="fa-solid fa-book"></i>
+        <span>My Skills</span>
+    </a>
+
+    <!-- My Projects -->
+    <a href="{{ url_for('my_projects') }}" class="action-btn">
+        <i class="fa-solid fa-folder"></i>
+        <span>My Projects</span>
+    </a>
+
+    <!-- Dashboard -->
+    <a href="{{ url_for('dashboard') }}" class="action-btn">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </a>
+
+    <!-- Resume (Coming Soon) -->
+
+    
+    <a href="{{ url_for('add_certificate') }}" class="action-btn">
+    <i class="fa-solid fa-certificate"></i>
+    <span>Add Certificate</span>
+</a>
+
+  <a href="{{ url_for('resume_analyzer') }}" class="action-btn">
+    <i class="fa-solid fa-file-arrow-up"></i>
+    <span>AI Resume Analyzer</span>
+</a>
+
+</div> <!-- End of quick-card -->
+
+</section> <!-- End of bottom-grid -->

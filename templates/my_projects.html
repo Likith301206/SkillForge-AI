@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Projects</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/project.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+
+        <h1>My Projects</h1>
+
+        <div>
+
+            <a href="{{ url_for('dashboard') }}" class="dashboard-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="{{ url_for('add_project') }}" class="add-btn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add Project
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="project-grid">
+
+{% for project in projects %}
+
+<div class="project-box">
+
+    <div class="project-header">
+
+        <h2>{{ project[1] }}</h2>
+
+        <span>{{ project[7] }}%</span>
+
+    </div>
+
+    <p class="tech">{{ project[2] }}</p>
+
+    <p class="status">{{ project[6] }}</p>
+
+    <p class="description">
+
+        {{ project[3] }}
+
+    </p>
+
+    <div class="progress">
+
+        <div class="progress-fill"
+             style="width:{{ project[7] }}%;">
+
+        </div>
+
+    </div>
+
+    <div class="links">
+
+        <a href="{{ project[4] }}" target="_blank">
+
+            <i class="fa-brands fa-github"></i>
+
+            GitHub
+
+        </a>
+
+        <a href="{{ project[5] }}" target="_blank">
+
+            <i class="fa-solid fa-globe"></i>
+
+            Live Demo
+
+        </a>
+
+    </div>
+
+    <div class="actions">
+
+<a href="{{ url_for('edit_project', id=project[0]) }}">
+            <i class="fa-solid fa-pen"></i>
+
+            Edit
+
+        </a>
+
+    <a href="{{ url_for('delete_project', id=project[0]) }}">
+    <i class="fa-solid fa-trash"></i>
+    Delete
+</a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

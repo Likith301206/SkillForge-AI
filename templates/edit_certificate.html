@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Certificate</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/certificate.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>
+            <i class="fa-solid fa-pen-to-square"></i>
+            Edit Certificate
+        </h1>
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="certificate_name"
+                value="{{ certificate[1] }}"
+                required>
+
+            <input
+                type="text"
+                name="issuer"
+                value="{{ certificate[2] }}"
+                required>
+
+            <input
+                type="date"
+                name="issue_date"
+                value="{{ certificate[3] }}"
+                required>
+
+            <input
+                type="url"
+                name="credential_link"
+                value="{{ certificate[4] }}">
+
+            <button type="submit">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Update Certificate
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

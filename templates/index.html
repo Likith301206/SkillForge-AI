@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillForge AI</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+        <h2>SkillForge AI</h2>
+
+        <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+</ul>
+    </nav>
+
+       <section id="home" class="hero">
+        <h1>Build Skills. Build Career.</h1>
+
+        <p>
+            AI-powered platform to analyze your skills,
+            generate learning roadmaps and become job-ready.
+        </p>
+
+<a href="{{ url_for('register') }}" class="get-started-btn">
+    Get Started
+</a>
+    </section>
+    <section id="about" class="about">
+
+    <h2>About SkillForge AI</h2>
+
+    <p>
+
+        SkillForge AI is an AI-powered career development platform
+        designed to help students become industry-ready.
+
+    </p>
+
+    <div class="features">
+
+        <div class="card">
+            <h3>📄 Resume Builder</h3>
+            <p>Create beautiful professional resumes.</p>
+        </div>
+
+        <div class="card">
+            <h3>💡 Skill Tracker</h3>
+            <p>Track your technical skills and progress.</p>
+        </div>
+<center:"card
+">
+        <div class="card">
+            <h3>🚀 Project Portfolio</h3>
+            <p>Manage and showcase your best projects.</p>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

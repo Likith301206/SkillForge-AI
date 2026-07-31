@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Skill</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/add_skill.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="form-box">
+
+        <h1>
+            <i class="fa-solid fa-pen-to-square"></i>
+            Edit Skill
+        </h1>
+
+        <form method="POST">
+
+            <label>Skill Name</label>
+
+            <input
+                type="text"
+                name="skill_name"
+                value="{{ skill[1] }}"
+                required>
+
+            <label>Category</label>
+
+            <select name="category">
+
+                <option {% if skill[2]=="Programming" %}selected{% endif %}>
+                    Programming
+                </option>
+
+                <option {% if skill[2]=="Frontend" %}selected{% endif %}>
+                    Frontend
+                </option>
+
+                <option {% if skill[2]=="Backend" %}selected{% endif %}>
+                    Backend
+                </option>
+
+                <option {% if skill[2]=="Database" %}selected{% endif %}>
+                    Database
+                </option>
+
+            </select>
+
+            <label>Level</label>
+
+            <select name="level">
+
+                <option {% if skill[3]=="Beginner" %}selected{% endif %}>
+                    Beginner
+                </option>
+
+                <option {% if skill[3]=="Intermediate" %}selected{% endif %}>
+                    Intermediate
+                </option>
+
+                <option {% if skill[3]=="Advanced" %}selected{% endif %}>
+                    Advanced
+                </option>
+
+            </select>
+
+            <label>Progress (%)</label>
+
+            <input
+                type="number"
+                name="progress"
+                value="{{ skill[4] }}"
+                min="0"
+                max="100">
+
+            <button type="submit">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Update Skill
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

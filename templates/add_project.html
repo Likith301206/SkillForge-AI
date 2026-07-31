@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Project</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/project.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <form method="POST" class="project-card">
+
+        <h1>
+            <i class="fa-solid fa-folder-plus"></i>
+            Add New Project
+        </h1>
+
+        <label>Project Name</label>
+        <input
+            type="text"
+            name="project_name"
+            placeholder="SkillForge AI"
+            required>
+
+        <label>Tech Stack</label>
+        <input
+            type="text"
+            name="tech_stack"
+            placeholder="Flask, SQLite, HTML, CSS"
+            required>
+
+        <label>Description</label>
+
+        <textarea
+            name="description"
+            rows="5"
+            placeholder="Describe your project..."
+            required></textarea>
+
+        <label>GitHub Link</label>
+
+        <input
+            type="url"
+            name="github_link"
+            placeholder="https://github.com/...">
+
+        <label>Live Demo Link</label>
+
+        <input
+            type="url"
+            name="live_link"
+            placeholder="https://yourproject.com">
+
+        <label>Status</label>
+
+        <select name="status">
+
+            <option>Planning</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+
+        </select>
+
+        <label>Progress (%)</label>
+
+        <input
+            type="number"
+            name="progress"
+            min="0"
+            max="100"
+            value="0">
+
+        <button>
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Save Project
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

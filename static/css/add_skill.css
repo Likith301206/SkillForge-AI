@@ -1,0 +1,174 @@
+/* ===========================
+   Reset
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#0f1115;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+}
+
+/* ===========================
+   Container
+=========================== */
+
+.container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+}
+
+/* ===========================
+   Card
+=========================== */
+
+.card{
+
+    width:500px;
+
+    background:#181B22;
+
+    border:1px solid #2B2F38;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:35px;
+}
+
+.header i{
+
+    font-size:30px;
+
+    color:#D4AF37;
+}
+
+.header h1{
+
+    color:white;
+
+    font-size:30px;
+}
+
+/* ===========================
+   Form
+=========================== */
+
+.input-group{
+
+    margin-bottom:22px;
+}
+
+.input-group label{
+
+    display:block;
+
+    color:#D4AF37;
+
+    margin-bottom:8px;
+
+    font-weight:500;
+}
+
+.input-group input,
+.input-group select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:12px;
+
+    background:#252A34;
+
+    color:white;
+
+    font-size:15px;
+}
+
+.input-group input::placeholder{
+
+    color:#8A93A4;
+}
+
+/* ===========================
+   Button
+=========================== */
+
+button{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#D4AF37;
+
+    color:#111;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(212,175,55,.25);
+}
+
+button i{
+
+    margin-right:8px;
+}

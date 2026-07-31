@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>My Certificates</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/certificate.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card-list">
+
+        <h1>
+
+            <i class="fa-solid fa-certificate"></i>
+
+            My Certificates
+
+        </h1>
+
+        {% for certificate in certificates %}
+
+        <div class="certificate-card">
+
+            <h2>{{ certificate[1] }}</h2>
+
+            <p>
+
+                <strong>Issuer:</strong>
+
+                {{ certificate[2] }}
+
+            </p>
+
+            <p>
+
+                <strong>Issue Date:</strong>
+
+                {{ certificate[3] }}
+
+            </p>
+
+            <div class="buttons">
+
+                <a href="{{ certificate[4] }}"
+                   target="_blank"
+                   class="view">
+
+                    View
+
+                </a>
+
+                <a href="/edit_certificate/{{ certificate[0] }}"
+                   class="edit">
+
+                    Edit
+
+                </a>
+
+                <a href="/delete_certificate/{{ certificate[0] }}"
+                   class="delete">
+
+                    Delete
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
