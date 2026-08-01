@@ -151,7 +151,7 @@ def login():
         user = cursor.fetchone()
 
         if user and check_password_hash(user[3], password):
-            session["user"] = user[1]
+            session["user"] = user[2]    
             return redirect(url_for("dashboard"))
         else:
             return "Invalid Email or Password"
