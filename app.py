@@ -167,6 +167,26 @@ def users():
 
     return str(data)
 
+@app.route("/test-register")
+def test_register():
+
+    try:
+        cursor.execute("""
+        INSERT INTO users(fullname, email, password)
+        VALUES(?, ?, ?)
+        """, (
+            "Test User",
+            "test@test.com",
+            generate_password_hash("123456")
+        ))
+
+        connection.commit()
+
+        return "Inserted Successfully"
+
+    except Exception as e:
+        return str(e)
+
 @app.route("/dashboard")
 def dashboard():
 
