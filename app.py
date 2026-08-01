@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from werkzeug.security import generate_password_hash, check_password_hash
 from tempfile import NamedTemporaryFile
-from playwright.sync_api import sync_playwright
 import sqlite3
 from flask import request
 import os
@@ -27,6 +26,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.secret_key = "skillforge_secret_key"
+os.makedirs("database", exist_ok=True)
 connection = sqlite3.connect("database/skillforge.db", check_same_thread=False)
 
 cursor = connection.cursor()
