@@ -120,8 +120,8 @@ def register():
 
         try:
             cursor.execute("""
-            INSERT INTO users(fullname, email, password)
-            VALUES (?, ?, ?)
+                INSERT INTO users(fullname, email, password)
+                VALUES (?, ?, ?)
             """, (fullname, email, hashed_password))
 
             connection.commit()
@@ -130,11 +130,12 @@ def register():
 
             return redirect(url_for("login"))
 
-        except sqlite3.IntegrityError:
-            return "Email already exists"
+        except Exception as e:
+            connection.rollback()
+            print("REGISTER ERROR:", e)
+            return f"ERROR: {e}"
 
     return render_template("register.html")
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
