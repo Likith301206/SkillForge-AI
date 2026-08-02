@@ -1,18 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from tempfile import NamedTemporaryFile
 import sqlite3
-from flask import request
 import os
-import os
-from werkzeug.utils import secure_filename
-from flask import request
 import fitz
-import fitz
-import easyocr
-from PIL import Image
-import io
-import numpy as np
 import google.generativeai as genai
 from dotenv import load_dotenv
 from career_data import career_data
@@ -844,34 +836,6 @@ def resume_analyzer():
                 )
 
                 resume.save(filepath)
-
-                reader = easyocr.Reader(['en'])
-
-                doc = fitz.open(filepath)
-
-                for page in doc:
-
-                    text = page.get_text()
-
-                    if text.strip():
-
-                        extracted_text += text + "\n"
-
-                    else:
-
-                        pix = page.get_pixmap(dpi=300)
-
-                        img_bytes = pix.tobytes("png")
-
-                        image = Image.open(io.BytesIO(img_bytes))
-                        image = np.array(image)
-
-                        result = reader.readtext(image)
-
-                        for item in result:
-                            extracted_text += item[1] + " "
-
-                doc.close()
 
                 session["resume_text"] = extracted_text
 
