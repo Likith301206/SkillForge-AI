@@ -152,7 +152,8 @@ def login():
         user = cursor.fetchone()
 
         if user and check_password_hash(user[3], password):
-            session["user"] = user[2]    
+            session["user"] = user[2]      # Email (keep for database)
+            session["name"] = user[1]      # Full name (for UI)  
             return redirect(url_for("dashboard"))
         else:
             return "Invalid Email or Password"
@@ -225,20 +226,18 @@ def dashboard():
         avg_skill = 0
 
     avg_skill = round(avg_skill)
-
     return render_template(
-        "dashboard.html",
-        user=session["user"],
-        total_skills=total_skills,
-        total_projects=total_projects,
-        avg_skill=avg_skill
-    )
-
+    "dashboard.html",
+    user=session["name"],
+    total_skills=total_skills,
+    total_projects=total_projects,
+    avg_skill=avg_skill
+)
 @app.route("/logout")
 def logout():
 
     session.pop("user", None)
-
+    session.pop("name", None)
     return redirect(url_for("login"))
 
 @app.route("/add_skill")
@@ -1073,4 +1072,8 @@ import os
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+
+    app.run(
+        host="0.0.0.0",
+        port=port
+    )
