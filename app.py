@@ -8,6 +8,10 @@ import fitz
 import google.generativeai as genai
 from dotenv import load_dotenv
 from career_data import career_data
+import easyocr
+from PIL import Image
+import io
+import numpy as np
 app = Flask(__name__)
 load_dotenv()
 
@@ -15,8 +19,10 @@ genai.configure(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 model = genai.GenerativeModel("gemini-2.5-flash")
+reader = easyocr.Reader(["en"], gpu=False)
 UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 app.secret_key = "skillforge_secret_key"
 os.makedirs("database", exist_ok=True)
 connection = sqlite3.connect("database/skillforge.db", check_same_thread=False)
@@ -819,106 +825,17 @@ def resume_analyzer():
     if request.method == "POST":
 
         action = request.form.get("action")
-        print("Action =", action)
 
-        # ---------------- Resume Analyzer ----------------
         if action == "resume":
 
-            resume = request.files.get("resume")
-
-            if resume:
-
-                filename = secure_filename(resume.filename)
-
-                filepath = os.path.join(
-                    app.config["UPLOAD_FOLDER"],
-                    filename
-                )
-
-                resume.save(filepath)
-
-                session["resume_text"] = extracted_text
-
-                text = extracted_text.lower()
-
-                resume_score = 0
-                ats_score = 0
-
-                strengths = []
-                suggestions = []
-
-                keywords = [
-                    "python",
-                    "java",
-                    "c",
-                    "sql",
-                    "html",
-                    "css",
-                    "javascript",
-                    "react",
-                    "node",
-                    "flask",
-                    "django",
-                    "github",
-                    "linkedin",
-                    "education",
-                    "project",
-                    "projects",
-                    "skills",
-                    "experience",
-                    "internship"
-                ]
-
-                for word in keywords:
-
-                    if word in text:
-                        resume_score += 5
-
-                resume_score = min(resume_score, 100)
-                ats_score = resume_score
-
-                if "python" in text:
-                    strengths.append("Python Skill Present")
-
-                if "github" in text:
-                    strengths.append("GitHub Profile Added")
-
-                if "linkedin" in text:
-                    strengths.append("LinkedIn Profile Present")
-
-                if "education" in text:
-                    strengths.append("Education Section Present")
-
-                if "experience" in text:
-                    strengths.append("Experience Section Present")
-
-                if "project" in text:
-                    strengths.append("Projects Section Present")
-
-                if "linkedin" not in text:
-                    suggestions.append("Add LinkedIn Profile")
-
-                if "github" not in text:
-                    suggestions.append("Add GitHub Profile")
-
-                if "internship" not in text:
-                    suggestions.append("Mention Internship Experience")
-
-                if "achievement" not in text:
-                    suggestions.append("Add Achievements Section")
-
-                if len(text) < 1000:
-                    suggestions.append(
-                        "Resume can include more technical details"
-                    )
-
+            if "resume" not in request.files:
                 return render_template(
                     "resume_analyzer.html",
-                    extracted_text=extracted_text,
-                    resume_score=resume_score,
-                    ats_score=ats_score,
-                    strengths=strengths,
-                    suggestions=suggestions,
+                    extracted_text="",
+                    resume_score=0,
+                    ats_score=0,
+                    strengths=[],
+                    suggestions=["Please choose a PDF file."],
                     skill_match=None,
                     existing_skills=[],
                     missing_skills=[],
@@ -929,7 +846,111 @@ def resume_analyzer():
                     interview_topics=[]
                 )
 
-        # ---------------- Skill Gap ----------------
+            resume = request.files.get("resume")
+
+            if resume is None or resume.filename == "":
+                return render_template(
+                    "resume_analyzer.html",
+                    extracted_text="",
+                    resume_score=0,
+                    ats_score=0,
+                    strengths=[],
+                    suggestions=["No file selected."],
+                    skill_match=None,
+                    existing_skills=[],
+                    missing_skills=[],
+                    roadmap=[],
+                    projects=[],
+                    certifications=[],
+                    tools=[],
+                    interview_topics=[]
+                )
+
+            filename = secure_filename(resume.filename)
+            filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+            resume.save(filepath)
+
+            extracted_text = ""
+            doc = fitz.open(filepath)
+
+            for page in doc:
+                text = page.get_text().strip()
+
+                if text:
+                    extracted_text += text + "\n"
+                else:
+                    pix = page.get_pixmap(matrix=fitz.Matrix(3, 3))
+                    image = Image.frombytes(
+                        "RGB",
+                        (pix.width, pix.height),
+                        pix.samples
+                    )
+                    result = reader.readtext(
+                        np.array(image),
+                        detail=0,
+                        paragraph=True
+                    )
+                    extracted_text += "\n".join(result) + "\n"
+
+            doc.close()
+
+            session["resume_text"] = extracted_text
+            text = extracted_text.lower()
+
+            resume_score = 0
+            strengths = []
+            suggestions = []
+
+            keywords = [
+                "python","java","c","sql","html","css","javascript",
+                "react","node","flask","django","github","linkedin",
+                "education","project","projects","skills",
+                "experience","internship"
+            ]
+
+            for word in keywords:
+                if word in text:
+                    resume_score += 5
+
+            resume_score = min(resume_score,100)
+            ats_score = resume_score
+
+            if "python" in text: strengths.append("Python Skill Present")
+            if "github" in text: strengths.append("GitHub Profile Added")
+            if "linkedin" in text: strengths.append("LinkedIn Profile Present")
+            if "education" in text: strengths.append("Education Section Present")
+            if "experience" in text: strengths.append("Experience Section Present")
+            if "project" in text: strengths.append("Projects Section Present")
+
+            if "linkedin" not in text:
+                suggestions.append("Add LinkedIn Profile")
+            if "github" not in text:
+                suggestions.append("Add GitHub Profile")
+            if "internship" not in text:
+                suggestions.append("Mention Internship Experience")
+            if "achievement" not in text:
+                suggestions.append("Add Achievements Section")
+            if len(text) < 1000:
+                suggestions.append("Resume can include more technical details")
+
+            return render_template(
+                "resume_analyzer.html",
+                extracted_text=extracted_text,
+                resume_score=resume_score,
+                ats_score=ats_score,
+                strengths=strengths,
+                suggestions=suggestions,
+                skill_match=None,
+                existing_skills=[],
+                missing_skills=[],
+                roadmap=[],
+                projects=[],
+                certifications=[],
+                tools=[],
+                interview_topics=[]
+            )
+
         elif action == "skill_gap":
 
             job_role = request.form["job_role"].strip()
@@ -970,6 +991,7 @@ def resume_analyzer():
                 for skill in required_skills
                 if skill.lower() not in resume_text
             ]
+
             if required_skills:
                 skill_match = round(
                     (len(existing_skills) / len(required_skills)) * 100
