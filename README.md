@@ -210,19 +210,45 @@ SkillForge-AI/
 └── .gitignore
 ```
 ---
-#📸 Application Preview
+📸 Application Preview
 
-| Login | Dashboard |
-|--------|-----------|
-| Coming Soon | Coming Soon |
+ 🔐 Login
 
-| Resume Builder | Resume Analyzer |
-|----------------|-----------------|
-| Coming Soon | Coming Soon |
+<p align="center">
+<img src="assets/screenshots/login.png" width="90%">
+</p>
 
-| Skill Gap Analyzer | Certificate Manager |
-|---------------------|---------------------|
-| Coming Soon | Coming Soon |
+---
+
+ 📊 Dashboard
+
+<p align="center">
+<img src="assets/screenshots/dashboard.png" width="90%">
+</p>
+
+---
+
+ 📄 Resume Builder
+
+<p align="center">
+<img src="assets/screenshots/resume-builder.png" width="90%">
+</p>
+
+---
+
+🤖 Resume Analyzer
+
+<p align="center">
+<img src="assets/screenshots/resume-analyzer.png" width="90%">
+</p>
+
+---
+
+🎯 Skill Gap Analyzer
+
+<p align="center">
+<img src="assets/screenshots/skill-gap.png" width="90%">
+</p>
 
  🗄️ Database Design
 
