@@ -19,12 +19,6 @@ genai.configure(
 )
 model = genai.GenerativeModel("gemini-2.5-flash")
 reader = None
-
-try:
-    import easyocr
-    reader = easyocr.Reader(["en"], gpu=False)
-except Exception:
-    print("EasyOCR not available. OCR fallback disabled.")
 UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
@@ -891,13 +885,8 @@ def resume_analyzer():
                         (pix.width, pix.height),
                         pix.samples
                     )
-                    if reader:
-                        result = reader.readtext(
-                            np.array(image),
-                            detail=0,
-                            paragraph=True
-                        )
-                        extracted_text += "\n".join(result) + "\n"
+                    # OCR disabled on Render free
+                    pass
 
             doc.close()
 
