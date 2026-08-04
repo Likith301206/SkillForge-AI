@@ -1,24 +1,38 @@
-🚀 SkillForge AI
 <p align="center">
   <img src="assets/images/banner.png" alt="SkillForge AI Banner" width="100%">
 </p>
-An AI-powered career development platform built with Flask,Python, and SQLite that helps users build professional resumes,analyze resume quality, and identify skill gaps for different softwarecareers.
+An AI-powered career development platform built with Flask, Python, and SQLite that helps students build professional resumes, analyze ATS compatibility, identify skill gaps, and plan their learning journey.
 
 <p align="center">
 
-![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
+<img src="https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python">
 
-![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black?style=for-the-badge&logo=flask)
+<img src="https://img.shields.io/badge/Flask-Web_Framework-black?style=for-the-badge&logo=flask">
 
-![SQLite](https://img.shields.io/badge/SQLite-Database-blue?style=for-the-badge&logo=sqlite)
+<img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite">
 
-![HTML5](https://img.shields.io/badge/HTML5-Frontend-orange?style=for-the-badge&logo=html5)
+<img src="https://img.shields.io/badge/HTML5-Frontend-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 
-![CSS3](https://img.shields.io/badge/CSS3-Styling-blue?style=for-the-badge&logo=css3)
+<img src="https://img.shields.io/badge/CSS3-Styling-1572B6?style=for-the-badge&logo=css3">
 
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+<img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+
+<p align="center">
+
+<a href="https://github.com/Likith301206/SkillForge-AI">
+<img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github">
+</a>
+
+<a href="https://www.linkedin.com/in/likith30/">
+<img src="https://img.shields.io/badge/LinkedIn-Profile-0A66C2?style=for-the-badge&logo=linkedin">
+</a>
+
+<a href="https://likith30.github.io">
+<img src="https://img.shields.io/badge/Portfolio-Website-8A2BE2?style=for-the-badge&logo=googlechrome&logoColor=white">
+</a>
 
 </p>
+An AI-powered...
 
 ---
 
@@ -144,59 +158,71 @@ The objective is to simplify career preparation by bringing multiple career deve
 - GitHub
   ---
 
-🏗️ System Architecture
+ 🏗️ System Workflow
 
-```
-                    +----------------------+
-                    |      User            |
-                    +----------+-----------+
-                               |
-                               |
-                    HTML / CSS / JavaScript
-                               |
-                               |
-                     +---------v----------+
-                     |    Flask Server    |
-                     +---------+----------+
-                               |
-        +----------------------+----------------------+
-        |                      |                      |
-        |                      |                      |
-+-------v------+      +--------v-------+      +-------v------+
-| Resume Module|      | Skill Module   |      | Project Module|
-+--------------+      +----------------+      +--------------+
-        |                      |                      |
-        +----------------------+----------------------+
-                               |
-                               |
-                     +---------v----------+
-                     |     SQLite DB      |
-                     +--------------------+
+```mermaid
+flowchart TD
+
+A([👤 Student]) --> B[🔐 Login / Register]
+
+B --> C[📊 Dashboard]
+
+C --> D[📄 Resume Builder]
+C --> E[🤖 Resume Analyzer]
+C --> F[🧠 Skill Gap Analyzer]
+C --> G[🏆 Certificate Manager]
+C --> H[💼 Project Portfolio]
+
+D --> I[(SQLite Database)]
+E --> I
+F --> I
+G --> I
+H --> I
+
+I --> J[📈 Career Insights]
+
+J --> K([🚀 Career Growth])
 ```
 
 ---
 
- 📂 Project Structure
+  📂 Project Structure
 
-```
+```text
 SkillForge-AI/
+│
+├── assets/
+│   └── images/
 │
 ├── static/
 │   ├── css/
 │   ├── js/
-│   └── images/
+│   └── uploads/
 │
 ├── templates/
 │
 ├── database/
 │
 ├── app.py
+├── career_data.py
 ├── requirements.txt
 ├── README.md
-└── LICENSE
+└── .gitignore
 ```
-
 ---
+#📸 Application Preview
+
+| Login | Dashboard |
+|--------|-----------|
+| Coming Soon | Coming Soon |
+
+| Resume Builder | Resume Analyzer |
+|----------------|-----------------|
+| Coming Soon | Coming Soon |
+
+| Skill Gap Analyzer | Certificate Manager |
+|---------------------|---------------------|
+| Coming Soon | Coming Soon |
 
  🗄️ Database Design
 
@@ -332,6 +358,4 @@ Computer Science Engineering Student
 
 ---
 
- 📄 License
-
-This project is licensed under the MIT License.
+ 
