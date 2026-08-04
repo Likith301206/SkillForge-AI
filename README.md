@@ -1,9 +1,8 @@
-# 🚀 SkillForge AI
+🚀 SkillForge AI
 <p align="center">
   <img src="assets/images/banner.png" alt="SkillForge AI Banner" width="100%">
 </p>
-
-> **An AI-Powered Career Development Platform that helps students build resumes, analyze ATS compatibility, identify skill gaps, manage projects, and create personalized learning roadmaps.**
+An AI-powered career development platform built with Flask,Python, and SQLite that helps users build professional resumes,analyze resume quality, and identify skill gaps for different softwarecareers.
 
 <p align="center">
 
@@ -23,7 +22,7 @@
 
 ---
 
-# 📖 Overview
+ 📖 Overview
 
 SkillForge AI is a full-stack web application developed to assist students in improving their career readiness through AI-assisted tools.
 
@@ -33,7 +32,7 @@ Rather than using multiple websites for different career-related tasks, SkillFor
 
 ---
 
-# ❓ Problem Statement
+❓ Problem Statement
 
 Students often struggle with:
 
@@ -47,7 +46,7 @@ Existing solutions usually focus on only one of these problems.
 
 ---
 
-# 💡 Solution
+ 💡 Solution
 
 SkillForge AI provides an integrated platform that enables students to:
 
@@ -61,22 +60,22 @@ SkillForge AI provides an integrated platform that enables students to:
 The objective is to simplify career preparation by bringing multiple career development tools together in one platform.
 ---
 
-# ✨ Core Features
+ ✨ Core Features
 
-## 👤 User Authentication
+ 👤 User Authentication
 - Secure user registration and login
 - Personalized dashboard for every user
 
 ---
 
-## 📄 AI Resume Builder
+ 📄 AI Resume Builder
 - Create professional resumes
 - Download resumes in PDF format
 - Easy-to-use resume editor
 
 ---
 
-## 🤖 AI Resume Analyzer
+🤖 AI Resume Analyzer
 - Analyze uploaded resumes
 - Generate ATS compatibility score
 - Provide resume improvement suggestions
@@ -84,7 +83,7 @@ The objective is to simplify career preparation by bringing multiple career deve
 
 ---
 
-## 🎯 Skill Gap Analyzer
+🎯 Skill Gap Analyzer
 - Compare current skills with industry requirements
 - Generate personalized learning recommendations
 - Supports multiple career paths including:
@@ -99,53 +98,53 @@ The objective is to simplify career preparation by bringing multiple career deve
 
 ---
 
-## 🏆 Certificate Management
+🏆 Certificate Management
 - Store and organize professional certifications
 - Maintain a digital record of achievements
 
 ---
 
-## 💼 Project Portfolio
+ 💼 Project Portfolio
 - Add academic and personal projects
 - Track technologies used
 - Build a professional project portfolio
 
 ---
 
-## 🧠 Skill Management
+🧠 Skill Management
 - Track technical skills
 - Organize learning progress
 - Maintain an updated developer profile
 
 ---
 
-# 🛠 Tech Stack
+🛠 Tech Stack
 
-## Backend
+  Backend
 - Python
 - Flask
 
-## Frontend
+ Frontend
 - HTML5
 - CSS3
 - JavaScript
 
-## Database
+ Database
 - SQLite
 
-## AI Concepts
+ AI Concepts
 - Resume Analysis
 - ATS Score Evaluation
 - Skill Gap Analysis
 - OCR-based Resume Processing
 
-## Development Tools
+ Development Tools
 - VS Code
 - Git
 - GitHub
   ---
 
-# 🏗️ System Architecture
+🏗️ System Architecture
 
 ```
                     +----------------------+
@@ -177,7 +176,7 @@ The objective is to simplify career preparation by bringing multiple career deve
 
 ---
 
-# 📂 Project Structure
+ 📂 Project Structure
 
 ```
 SkillForge-AI/
@@ -199,11 +198,11 @@ SkillForge-AI/
 
 ---
 
-# 🗄️ Database Design
+ 🗄️ Database Design
 
 The project uses **SQLite** as its database to manage application data efficiently.
 
-### Main Modules
+ Main Modules
 
 - 👤 User Management
 - 📄 Resume Management
@@ -217,27 +216,27 @@ The modular database design allows different features to interact while maintain
 
 ---
 
-# ⚙️ Installation
+ ⚙️ Installation
 
-## Clone the repository
+ Clone the repository
 
 ```bash
 git clone https://github.com/Likith301206/SkillForge-AI.git
 ```
 
-## Navigate to the project
+ Navigate to the project
 
 ```bash
 cd SkillForge-AI
 ```
 
-## Install dependencies
+ Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Run the application
+ Run the application
 
 ```bash
 python app.py
@@ -251,7 +250,7 @@ http://127.0.0.1:5000
 
 ---
 
-# 🌐 Deployment
+ 🌐 Deployment
 
 The application can be deployed using platforms such as:
 
@@ -261,9 +260,9 @@ The application can be deployed using platforms such as:
 - Azure App Service
 
 Future versions will include a live hosted demo.
----
 
-# 🚀 Future Roadmap
+
+ 🚀 Future Roadmap
 
 The following enhancements are planned for future releases of SkillForge AI:
 
@@ -279,7 +278,7 @@ The following enhancements are planned for future releases of SkillForge AI:
 
 ---
 
-# 📚 What I Learned
+ 📚 What I Learned
 
 Developing SkillForge AI helped me strengthen my skills in:
 
@@ -296,7 +295,7 @@ Developing SkillForge AI helped me strengthen my skills in:
 
 ---
 
-# 🎯 Why SkillForge AI?
+ 🎯 Why SkillForge AI?
 
 SkillForge AI was built with a simple vision:
 
@@ -306,7 +305,7 @@ Instead of switching between multiple tools, students can manage their career de
 
 ---
 
-# 🤝 Contributing
+ 🤝 Contributing
 
 Contributions, ideas, and suggestions are welcome.
 
@@ -319,9 +318,9 @@ If you'd like to improve SkillForge AI:
 
 ---
 
-# 👨‍💻 Author
+ 👨‍💻 Author
 
-## Likith S
+ Likith S
 
 Computer Science Engineering Student
 
@@ -333,6 +332,6 @@ Computer Science Engineering Student
 
 ---
 
-# 📄 License
+ 📄 License
 
 This project is licensed under the MIT License.
