@@ -1,4 +1,7 @@
 # 🚀 SkillForge AI
+<p align="center">
+  <img src="assets/images/banner.png" alt="SkillForge AI Banner" width="100%">
+</p>
 
 > **An AI-Powered Career Development Platform that helps students build resumes, analyze ATS compatibility, identify skill gaps, manage projects, and create personalized learning roadmaps.**
 
