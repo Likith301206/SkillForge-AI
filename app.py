@@ -8,7 +8,6 @@ import fitz
 import google.generativeai as genai
 from dotenv import load_dotenv
 from career_data import career_data
-import easyocr
 from PIL import Image
 import io
 import numpy as np
@@ -19,7 +18,13 @@ genai.configure(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 model = genai.GenerativeModel("gemini-2.5-flash")
-reader = easyocr.Reader(["en"], gpu=False)
+reader = None
+
+try:
+    import easyocr
+    reader = easyocr.Reader(["en"], gpu=False)
+except Exception:
+    print("EasyOCR not available. OCR fallback disabled.")
 UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
@@ -886,12 +891,13 @@ def resume_analyzer():
                         (pix.width, pix.height),
                         pix.samples
                     )
-                    result = reader.readtext(
-                        np.array(image),
-                        detail=0,
-                        paragraph=True
-                    )
-                    extracted_text += "\n".join(result) + "\n"
+                    if reader:
+                        result = reader.readtext(
+                            np.array(image),
+                            detail=0,
+                            paragraph=True
+                        )
+                        extracted_text += "\n".join(result) + "\n"
 
             doc.close()
 
